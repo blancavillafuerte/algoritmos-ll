@@ -1,0 +1,38 @@
+// iuh.cpp : Defines the entry point for the console application.
+//
+
+//REALIZAR UNA FUNCION QUE SUME LOS DIGITOS
+
+#include "stdafx.h"
+#include "conio.h"
+#include "stdio.h"
+#include "stdlib.h"
+#include <iostream>
+
+using namespace std;
+
+int sumadigitos (int n);
+
+void main ()
+{
+	int n,s;
+	cout<<"INGRESE N";
+	cin>>n;
+	s=sumadigitos(n);
+	cout<<s;
+	getch();
+}
+
+int sumadigitos (int n)
+{
+	if(n<10)
+	{
+		return n;
+	}
+	else
+	{
+		int s=sumadigitos(n/10);
+		return s+ (n%10);
+	}
+
+}
