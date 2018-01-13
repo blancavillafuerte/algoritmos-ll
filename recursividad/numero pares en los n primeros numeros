@@ -1,0 +1,43 @@
+// iuh.cpp : Defines the entry point for the console application.
+//
+
+//REALIZAR UNA FUNCION QUE IMPRIMA LOS PARES QUE ESTAN EN LOS N PRIMEROS NUMERO NATURALES
+
+#include "stdafx.h"
+#include "conio.h"
+#include "stdio.h"
+#include "stdlib.h"
+#include <iostream>
+
+using namespace std;
+
+void pares (int n);
+
+void main ()
+{
+	int n;
+	cout<<"INGRESE N";
+	cin>>n;
+	pares(n);
+	getch();
+}
+
+
+void pares (int n)
+{
+	if(n==0)
+	{
+	}
+	else
+	{
+		pares (n-1);
+
+		if (n%2==0)
+		{
+		
+		cout<<n;
+		}
+	}
+
+}
+
