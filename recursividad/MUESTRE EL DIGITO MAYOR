@@ -1,0 +1,42 @@
+// iuh.cpp : Defines the entry point for the console application.
+//
+
+//REALIZAR UNA FUNCION QUE MUESTRE EL DIGITO MAYOR
+
+#include "stdafx.h"
+#include "conio.h"
+#include "stdio.h"
+#include "stdlib.h"
+#include <iostream>
+
+using namespace std;
+int digitos (int num);
+
+void main ()
+{
+	int num,d;
+	cout<<"INGRESE N";
+	cin>>num;
+	d=digitos(num);
+	cout<<d;
+	getch();
+}
+
+int digitos (int num)
+{ 
+	if(num<10)
+	{
+		return num;
+	}
+	else
+	{
+		int x=digitos(num/10);
+		
+		if((num%10)>x)
+			return (num%10);
+		else
+			return x;
+		
+	}
+
+}
