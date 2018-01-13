@@ -1,0 +1,41 @@
+// iuh.cpp : Defines the entry point for the console application.
+//
+
+//REALIZAR UNA FUNCION QUE MUESTRES LA SUMA DE DIGITOS PARES
+
+#include "stdafx.h"
+#include "conio.h"
+#include "stdio.h"
+#include "stdlib.h"
+#include <iostream>
+
+using namespace std;
+int digitos (int num);
+
+void main ()
+{
+	int num,d;
+	cout<<"INGREeSE N";
+	cin>>num;
+	d=digitos(num);
+	cout<<d;
+	getch();
+}
+
+int digitos (int num)
+{ 
+	if(num<10 && num%2==0)
+	{
+		return num;
+	}
+	else
+	{
+		int x=digitos(num/10);
+		if((num%10)%2==0)
+			return (num%10)+x;
+		else
+			return x;
+		
+	}
+
+}
