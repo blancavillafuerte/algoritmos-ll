@@ -27,8 +27,8 @@ void naturales (int n)
 	}
 	else
 	{
-		naturales (n-1);
-		cout<<n;
+		naturales (n-1); // para que sea invertido solo tiengo que 
+		cout<<n;         // poner el cout arriba de la funcion naturales
 	}
 
 }
