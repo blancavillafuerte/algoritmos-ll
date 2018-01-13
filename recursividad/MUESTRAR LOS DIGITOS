@@ -1,0 +1,36 @@
+// iuh.cpp : Defines the entry point for the console application.
+//
+
+//REALIZAR UNA FUNCION QUE MUESTRES LOS DIGITOS
+
+#include "stdafx.h"
+#include "conio.h"
+#include "stdio.h"
+#include "stdlib.h"
+#include <iostream>
+
+using namespace std;
+
+void digitos (int num);
+
+void main ()
+{
+	int num,s;
+	cout<<"INGRESE N";
+	cin>>num;
+	digitos(num);
+	getch();
+}
+
+void digitos (int num)
+{
+	if(num==0)
+	{
+	}
+	else
+	{
+		cout<<num%10;
+		digitos(num/10);
+	}
+
+}
