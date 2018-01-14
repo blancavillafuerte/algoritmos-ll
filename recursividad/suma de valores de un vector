@@ -1,0 +1,56 @@
+// hfydcgvjhkbj.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include "stdlib.h"
+#include "conio.h"
+#include "stdio.h"
+#include <iostream>
+
+using namespace std;
+
+void cargar(int v[],int n)
+{
+	int i=0;
+	while(i<n)
+	{
+		cout<<"INGRESE VALOR";
+		cin>>v[i];
+		i++;
+	}
+
+}
+
+void leer(int v[],int n)
+{
+	int i=0;
+	while(i<n)
+	{
+		cout<<v[i];
+		i++;
+	}
+}
+
+int SumaValores(int v[],int n)
+{
+	if(n==1)
+		return v[0];
+	else
+	{
+		int x=SumaValores(v,n-1);
+		return x+(v[n-1]);
+	}
+
+}
+
+void main()
+{
+	int v[50],n,d;
+	cout<<"Ingrese tamano";
+	cin>>n;
+	cargar(v,n);
+	leer(v,n);
+	d=SumaValores(v,n);
+	cout<<d;
+	getch();
+}
