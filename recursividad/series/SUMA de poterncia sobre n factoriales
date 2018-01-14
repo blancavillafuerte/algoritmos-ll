@@ -1,0 +1,45 @@
+// hfydcgvjhkbj.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include "stdlib.h"
+#include "conio.h"
+#include "stdio.h"
+#include <iostream>
+#include "math.h"
+
+using namespace std;
+
+float fact(int n)
+{
+	if(n==0)
+		return 1;
+	else
+	{
+		float x=fact(n-1);
+		return x*n;
+	}
+}
+float sumaTerminos(int x,int n)
+{
+	if ( (n<1) || (x<1) )
+	{
+		return 0;
+	}
+	else
+	{
+		float p=sumaTerminos(x,n-1);
+		return ( p+ (powf(x,n)/fact(n)));
+	}
+}
+void main()
+{
+	float n,x,s;
+	cout<<"INGRESE EL NUMERO DE TERMINOS: ";
+	cin>>n;
+	cout<<"INGRESE EL NUMERO BASE: ";
+	cin>>x;
+	s=sumaTerminos(x,n);
+	cout<<s;
+	getch();
+}
