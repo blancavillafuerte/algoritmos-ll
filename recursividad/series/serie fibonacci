@@ -1,0 +1,41 @@
+// tarea.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include "conio.h"
+#include "stdlib.h"
+#include "stdio.h"
+#include <iostream>
+
+using namespace std;
+
+int fib( int n)
+{
+	int i=0;
+	if(n==1)
+		return 1;
+	else
+	{
+		while(i<n)
+		{
+			int x=fib(n-1);
+			return x+ fib(n-2);
+		}
+	}
+}
+
+void main()
+{
+	int n,i=1,t,s;
+	cout<<"INGRESE HASTA QUE TERMINO DESEA DEL FIBONACCI: ";
+	cin>>n;
+	t=fib(n);
+	cout<<t;
+	while(i<=n)
+	{
+		s=fib(i);
+		cout<<s<"  ";
+		i++;
+	}
+	getch();
+}
