@@ -1,0 +1,177 @@
+// tarea.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include "conio.h"
+#include "stdlib.h"
+#include "stdio.h"
+#include <iostream>
+
+using namespace std;
+
+void cargarvec(int v[],int n)
+{
+	int a,i=0;
+	while(i<n)
+	{
+		cout<<"INGRESE VALORES: ";
+		cin>>a;
+		v[i]=a;
+		cout<<endl;
+		i++;
+	}
+}
+void leervec(int v[],int n)
+{
+	int i=0;
+	while(i<n)
+	{
+		cout<<v[i];
+		i++;
+	}
+}
+void quicksort( int v[],int izq, int dere)
+{
+	int i,j,piv,valor;
+	i=izq;
+	j=dere;
+	piv=v[(izq+dere)/2];
+	do
+	{
+		while(v[i]<piv)
+			i++;
+		while(v[j]>piv)
+			j--;
+		if(i<=j)
+		{
+			valor=v[i];
+			v[i]=v[j];
+			v[j]=valor;
+			i++;
+			j--;
+		}
+	}while(i<=j);
+	if(izq<j)
+		quicksort(v,izq,j);
+	if(dere>i)
+		quicksort(v,i,dere);
+}
+
+void shell(int v[], int n)
+{
+	int s,pasos,a,i;
+	for(s=n/2;s!=0;s/=2)
+		for(pasos=1;pasos!=0;)
+		{
+			pasos=0;
+			for(i=s;i<n;i++)
+				if(v[i-s]>v[i])
+				{
+					a=v[i];
+					v[i]=v[i-s];
+					v[i-s]=a;
+					pasos++;
+				}
+		}
+}
+void cargarMat(int m[50][50], int fil, int col)
+{
+	int i,j;
+	for(i=0;i<fil;i++)
+		for(j=0;j<col;j++)
+			{cout<<"VALOR ["<<i<<"]["<<j<<"]: ";
+			cin>>m[i][j];
+			}
+}
+
+void leerMat(int m[50][50], int fil, int col)
+{	
+	int i,j;
+	for(i=0;i<fil;i++)
+		{for(j=0;j<col;j++)
+			{
+			cout<<m[i][j]<<"\t";
+			}
+		cout<<endl;
+		}
+}
+void quicksortMat(int m[50][50], int fil, int col)
+{
+	int v[50],i,j,tamv=0;
+	for(int i=0;i<fil;i++)
+	{
+		for(int j=0;j<col;j++)
+		{
+			v[tamv++]=m[i][j];
+		}
+	}
+	quicksort(v,0,tamv-1);
+	tamv=0;
+
+	for(int i=0;i<fil;i++)
+	{
+		for(int j=0;j<col;j++)
+		{
+			m[i][j]=v[tamv++];
+		}
+	}
+
+}
+void shellMat(int m[50][50], int fil, int col)
+{
+	int v[50],i,j,tamv=0;
+	for(int i=0;i<fil;i++)
+	{
+		for(int j=0;j<col;j++)
+		{
+			v[tamv++]=m[i][j];
+		}
+	}
+	shell(v,tamv);
+	tamv=0;
+
+	for(int i=0;i<fil;i++)
+	{
+		for(int j=0;j<col;j++)
+		{
+			m[i][j]=v[tamv++];
+		}
+	}
+}
+void main()
+{
+	int v[50],n,fil,col,m[50][50];
+	cout<<"ingrese tamano del vector: ";
+	cin>>n;
+	cargarvec(v,n);
+	leervec(v,n);
+	cout<<endl;
+	cout<<"METODOS DE ORDENACION DE VECTORES"<<endl;
+	cout<<"POR QUICKSORT: "<<endl;
+	quicksort(v,0,n-1);
+	leervec(v,n);
+	cout<<endl;
+	cout<<"POR SHELL: "<<endl;
+	shell(v,n);
+	leervec(v,n);
+	cout<<endl;
+	cout<<"METODOS DE ORDENAMIENTO DE MATRICES"<<endl;
+	cout<<"INGRESE DIMENSIONES DE LA MATRIZ:"<<endl;
+	cout<<"COLUMNAS: ";
+	cin>>col;
+	cout<<"FILAS: ";
+	cin>>fil;
+	cargarMat(m,fil,col);
+	leerMat(m,fil,col);
+	cout<<"POR QUICKSORT: "<<endl;
+	quicksortMat(m,fil,col);
+	leerMat(m,fil,col);
+	cout<<endl;
+	cout<<"POR SHELL: "<<endl;
+	cout<<endl;
+	shellMat(m,fil,col);
+	leerMat(m,fil,col);
+
+	getch();
+
+}
