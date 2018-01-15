@@ -1,0 +1,158 @@
+// vectrec.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include "iostream"
+#include "stdlib.h"
+#include "stdio.h"
+#include "conio.h"
+#include "math.h"
+
+using namespace std;
+
+void cargar(int v[], int n)
+{
+ int x; 
+ for(int i=0;i<n;i++)
+ {
+	 cout<<"Elemento:";
+	 cin>>x;
+	 v[i]=x;
+ }
+}
+
+void mostrar(int v[], int n)
+{
+ for(int i=0;i<n;i++)
+	 cout<<v[i]<<"\t";
+
+ cout<<endl;
+}
+
+int suma(int v[], int n)
+{
+	if(n==1)
+		return v[0];
+	else
+	{
+		int x= suma(v,n-1);
+		return (x + v[n-1]);
+	}
+}
+
+int sumapar(int v[], int n)
+{
+	if(n==1)
+		if(v[0]%2==0)
+			return v[0];
+		else
+			return 0;
+	else
+	{
+		int x= sumapar(v,n-1);
+		if(v[n-1]%2==0)
+			return (x + v[n-1]);
+		else
+			return x;
+	}
+}
+int menTermino(int v[], int n)
+{
+	if(n==1)
+		return v[0];
+	else
+	{
+		int x= menTermino(v,n-1);
+		if( v[n-1]<x )
+			return (v[n-1]);
+		else
+			return x;
+	}
+}
+
+void vecCuadrado(int v[], int n)
+{
+	if(n==1)
+		v[0]=powf(v[0],2);
+	else
+	{
+		vecCuadrado (v,n-1);
+		v[n-1]=powf(v[n-1],2);
+	}
+}
+
+bool existe(int v[], int n,int x)
+{
+	if(n==1)
+	{
+		if(v[0]==x)
+			return true;
+		else
+			return false;
+	}
+	else
+	{
+		bool s= existe(v,n-1,x);
+		if(s)
+			return true;
+		else
+		{
+			if(v[n-1]==x)
+				return true;
+			else
+				return false;
+		}
+	}
+}
+
+float promsuma(int v[], int n)
+{
+	if(n==1)
+		return v[0];
+	else
+	{
+		float x= promsuma(v,n-1);
+		return ((x + v[n-1])/2);
+	}
+}
+
+void main()
+{
+	float n,pos,x,k,men,p,q;
+	int v[50];
+	cout<<"Dimensiooon del vector:";
+	cin>>n;
+	cargar(v,n);
+	mostrar(v,n);
+	cout<<"suma de los terminos:";
+	x=suma(v,n);
+	cout<<x<<endl;
+	cout<<"suma de los terminos pares:";
+	k=sumapar(v,n);
+	cout<<k<<endl;
+	cout<<"el elemento menor de un vector:";
+	men=menTermino(v,n);
+	cout<<men<<endl;
+	//cout<<"los terminos al cuadrado serian:";
+	//vecCuadrado(v,n);
+	//mostrar(v,n);
+	//cout<<"existe el termino: ";
+	//cin>>p;
+	//if(existe(v,n,p))
+	//	cout<<"existe";
+	//else
+	//	cout<<"no existe";
+	cout<<"promedio de los terminos:";
+	q=promsuma(v,n);
+	cout<<q<<endl;
+	
+	
+
+	//cout<<"Elemento:";
+	//cin>>x;
+	//cout<<"Posicion:";
+	//cin>>pos;
+	
+	getch();
+	
+}
