@@ -1,0 +1,57 @@
+// tarea.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include "conio.h"
+#include "stdlib.h"
+#include "stdio.h"
+#include <iostream>
+
+using namespace std;
+
+void cargarvec(int v[50], int n)
+{
+	int i=0;
+	while(i<n)
+	{
+		cout<<"INGRESE VALOR: ";
+		cin>>v[i];
+		i++;
+	}
+}
+void mostrarvec(int v[50], int n)
+{
+	int i=0;
+	while(i<n)
+	{
+		cout<<v[i]<<"   ";
+		i++;
+	}
+}
+
+bool capicua(int v[],int n)
+{
+	if(n==1)
+		return true;
+	else
+	{
+		capicua(v,n-1);
+		if(v[n-1]==v[0])
+			return true;
+		else
+			return false;
+	}
+}
+void main()
+{
+	int v[50],n;
+	cout<<"INGRESE EL TAMANO: ";
+	cin>>n;
+	cargarvec(v,n);
+	mostrarvec(v,n);
+	if(capicua(v,n))
+		cout<<"es capicua"<<endl;
+	else
+		cout<<"no es capicua"<<endl;
+	getch();
+}
