@@ -29,15 +29,21 @@ void mostrarvec(int v[50], int n)
 	}
 }
 
-bool capicua(int v[],int n)
+bool capicua(int v[],int izq, int der)
 {
-	if(n==1)
-		return true;
+	if(izq==0)
+		if(v[izq]==v[der])
+			return true;
+		else
+			return false;
 	else
 	{
-		capicua(v,n-1);
-		if(v[n-1]==v[0])
-			return true;
+		bool s=capicua(v,izq-1,der+1);
+		if (s)
+			if(v[izq]==v[der])
+				return true;
+			else
+				return false;
 		else
 			return false;
 	}
@@ -45,11 +51,11 @@ bool capicua(int v[],int n)
 void main()
 {
 	int v[50],n;
-	cout<<"INGRESE EL TAMANO: ";
+	cout<<"INGRESE EL TAMAaaNO: ";
 	cin>>n;
 	cargarvec(v,n);
 	mostrarvec(v,n);
-	if(capicua(v,n))
+	if(capicua(v,(n-1)/2,(n-1)/2))
 		cout<<"es capicua"<<endl;
 	else
 		cout<<"no es capicua"<<endl;
