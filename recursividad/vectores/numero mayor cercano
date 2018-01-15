@@ -1,0 +1,73 @@
+// tarea.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include "conio.h"
+#include "stdlib.h"
+#include "stdio.h"
+#include <iostream>
+
+using namespace std;
+
+void cargarvec(int v[50], int n)
+{
+	int i=0;
+	while(i<n)
+	{
+		cout<<"INGRESE VALOR: ";
+		cin>>v[i];
+		i++;
+	}
+}
+void mostrarvec(int v[50], int n)
+{
+	int i=0;
+	while(i<n)
+	{
+		cout<<v[i]<<"   ";
+		i++;
+	}
+}
+int mayorCercano(int v[],int n,int p)
+{
+	if(n==1)
+	{
+		if(v[0]>p)
+			return (v[0]);
+		else
+		{
+			return 100;
+		}
+
+	}
+	else
+	{
+		int x= mayorCercano(v,n-1,p);
+		if( (v[n-1] > p) )
+		{
+	
+			if(v[n-1] < x)
+				return (v[n-1]);
+			else
+				return x;
+		}
+		else
+			return x;
+	}
+}
+
+void main()
+{
+	int v[50],n,maycer,p;
+	cout<<"INGRESE EL TAMANO: ";
+	cin>>n;
+	cargarvec(v,n);
+	mostrarvec(v,n);
+	cout<<"INGRESE EL NUMERO PIVOTE: ";
+	cin>>p;
+	maycer=mayorCercano(v,n,p);
+	if(maycer==100)
+		maycer=p;
+	cout<<maycer;
+	getch();
+}
