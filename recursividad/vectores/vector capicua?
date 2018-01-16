@@ -55,7 +55,7 @@ void main()
 	cin>>n;
 	cargarvec(v,n);
 	mostrarvec(v,n);
-	if(capicua(v,(n-1)/2,(n-1)/2))
+	if(capicua(v,(n-1)/2,(n)/2))
 		cout<<"es capicua"<<endl;
 	else
 		cout<<"no es capicua"<<endl;
