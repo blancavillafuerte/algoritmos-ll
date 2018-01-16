@@ -9,17 +9,19 @@
 
 using namespace std;
 
-int fib( int n)
+int fib( int n) //n es posicion no numero de termino
 {
 	int i=0;
-	if(n==1)
+	if(n==0)
 		return 1;
 	else
 	{
-		while(i<n)
+		if(n==1)
+			return 1;
+		else
 		{
-			int x=fib(n-1);
-			return x+ fib(n-2);
+				int x=fib(n-1);
+				return x+ fib(n-2);
 		}
 	}
 }
@@ -30,7 +32,8 @@ void main()
 	cout<<"INGRESE HASTA QUE TERMINO DESEA DEL FIBONACCI: ";
 	cin>>n;
 	t=fib(n);
-	cout<<t;
+	cout<<t<<endl;
+
 	while(i<=n)
 	{
 		s=fib(i);
