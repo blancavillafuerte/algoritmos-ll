@@ -1,0 +1,58 @@
+// tarea.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include "conio.h"
+#include "stdlib.h"
+#include "stdio.h"
+#include <iostream>
+
+using namespace std;
+
+int invertido (int n)
+{
+	int in=0;
+	while(n>0)
+	{
+	in=n%10+(in*10);
+	n=n/10;
+	}
+	return in;
+}
+
+bool escapicua(int n, int in)
+{
+	if(n==0 && in==0)
+		return true;
+	else 
+	{
+		int d1= n%10;
+		int d2= in%10;
+		n=n/10;
+		in=in/10;
+		
+		if(d1==d2)
+		{
+			bool es= escapicua(n,in);
+			.52+3
+			return es;
+		}
+		else
+			return false;
+	}
+}
+
+void main()
+{
+	int n,in;
+	cout<<"INGRESE EL NUMERO: ";
+	cin>>n;
+	in=invertido(n);
+	cout<<in;
+	if(escapicua(n,in))
+		cout<<"es capicua"<<endl;
+	else
+		cout<<"no es capicua"<<endl;
+	getch();
+}
+
