@@ -1,0 +1,74 @@
+// puntosVerticales.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include "stdlib.h"
+#include "stdio.h"
+#include "conio.h"
+#include <iostream>
+
+using namespace std;
+
+class punto {
+private:
+	int x;
+	int y;
+public:
+	punto ()
+	{
+		x=0;
+		y=0;
+	}
+	void setx(int a)
+	{
+		x=a;
+	}
+	void sety(int b)
+	{
+		y=b;
+	}
+	int getx()
+	{
+		return x;
+	}
+	int gety()
+	{
+		return y;
+	}
+	bool vertical(punto p2)
+	{
+		int m,n;
+		m=p2.getx();
+		n=getx();
+		if(m==n)
+			return true;
+		else
+			return false;
+	}
+};
+
+void main()
+{
+	punto p1,p2;
+	int a1,a2,b1,b2;
+	cout<<"INGRESE VALOR p1"<<endl;
+	cout<<"x; ";
+	cin>>a1;
+	p1.setx(a1);
+	cout<<"y; ";
+	cin>>b1;
+	p1.sety(b1);
+	cout<<"INGRESE VALOR p2";
+	cout<<"x; ";
+	cin>>a2;
+	p2.setx(a2);
+	cout<<"y; ";
+	cin>>b2;
+	p2.sety(b2);
+	if(p1.vertical(p2))
+		cout<<"SI SON VERTICALES";
+	else
+		cout<<"NO SON VERTICUALES";
+	getch();
+
+}
