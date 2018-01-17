@@ -1,0 +1,106 @@
+// Aumentar un seg.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include "stdlib.h"
+#include "stdio.h"
+#include "conio.h"
+#include <iostream>
+#include "math.h"
+
+using namespace std;
+
+class Hora {
+private:
+	int hra;
+	int min;
+	int seg;
+public:
+	Hora ()
+	{
+		hra=0;
+		min=0;
+		seg=0;
+	}
+	void sethra(int h)
+	{
+		hra=h;
+	}
+	void setmin(int m)
+	{
+		min=m;
+	}
+	void setseg(int s)
+	{
+		seg=s;
+	}
+	int gethra()
+	{
+		return hra;
+	}
+	int getmin()
+	{
+		return min;
+	}
+	int getseg()
+	{
+		return seg;
+	}
+	void mostrarHora()
+	{
+		cout<<hra<<":"<<min<<":"<<seg<<endl;
+	}
+	void aumentarSeg()
+	{
+		int a= gethra();
+		int b=getmin();
+		int c=getseg();
+		if( b==59 && c==59)
+		{
+			a=a+1;
+			b=0;
+			c=0;
+			sethra(a);
+			setmin(b);
+			setseg(c);
+		}
+
+		else
+		{
+			if(c==59)
+			{
+				b=b+1;
+				c=0;
+				setmin(b);
+				setseg(c);
+			}
+			else
+			{
+				c=c+1;
+				setseg(c);
+			}
+		}
+
+	}
+
+};
+
+void main()
+{
+	Hora t1,t2;
+	int h1,h2,m1,m2,s1,s2;
+	cout<<"INGRESE DEL PRIMER TIEMPO: ";
+	cout<<endl<<"Hra= ";
+	cin>>h1;
+	t1.sethra(h1);
+	cout<<endl<<"Min= ";
+	cin>>m1;
+	t1.setmin(m1);
+	cout<<endl<<"Seg= ";
+	cin>>s1;
+	t1.setseg(s1);
+	t1.aumentarSeg();
+	t1.mostrarHora();//solo se puede hacer esto si tenemos SOLO UN OBJETO (1 TIEMPO)
+	getch();
+	
+}
