@@ -1,0 +1,95 @@
+// tarea.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include "conio.h"
+#include "stdlib.h"
+#include "stdio.h"
+#include <iostream>
+
+using namespace std;
+const int diaMes[13]={0,31,28,31,30,31,30,31,31,30,31,30,31};
+class fecha{
+private:
+	int dia;
+	int mes;
+	int anio;
+public:
+	fecha()
+	{
+		dia=1;
+		mes=1;
+		anio=1;
+	}
+	void setdia(int d)
+	{
+		dia=d;
+	}
+	void setmes(int m)
+	{
+		mes=m;
+	}
+	void setanio(int a)
+	{
+		anio=a;
+	}
+	int getdia()
+	{
+		return dia;
+	}
+	int getmes()
+	{
+		return mes;
+	}
+	int getanio()
+	{
+		return anio;
+	}
+	void leerfecha()
+	{
+
+		cout<<endl<<"INGRESE ANIO: ";
+		cin>>anio;
+		do{
+		cout<<endl<<"INGRESE MES: ";
+		cin>>mes;
+		}while(mes>12);
+		do{
+		cout<<endl<<"INGRESE DIA: ";
+		cin>>dia;
+		}while(dia>diaMes[mes]);
+	}
+	void mostrarfecha()
+	{
+		cout<<dia<<"/"<<mes<<"/"<<anio<<endl;
+	}
+	void manhana()
+	{
+		dia=dia+1;
+		if(dia>diaMes[mes] && mes==12)
+		{
+			anio=anio+1;
+			mes=1;
+			dia=1;
+		}
+		if(dia>diaMes[mes] && mes<12)
+		{
+			mes=mes+1;
+			dia=1;
+		}	
+
+	}
+};//endlclass
+
+void main()
+{
+	fecha f1;
+	cout<<endl<<"--------PRIMERA FECHA-------------";
+	f1.leerfecha();
+	f1.mostrarfecha();
+	f1.manhana();
+	cout<<endl;
+	f1.mostrarfecha();
+
+	getch();
+}
