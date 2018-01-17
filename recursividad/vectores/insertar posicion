@@ -1,0 +1,65 @@
+// tarea.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include "conio.h"
+#include "stdlib.h"
+#include "stdio.h"
+#include <iostream>
+
+using namespace std;
+
+void cargarvec(int v[50], int n)
+{
+	int i=0;
+	while(i<n)
+	{
+		cout<<"INGRESE VALOR: ";
+		cin>>v[i];
+		i++;
+	}
+}
+void mostrarvec(int v[50], int n)
+{
+	int i=0;
+	while(i<n)
+	{
+		cout<<v[i]<<"   ";
+		i++;
+	}
+}
+void insertarPos(int v[],int &n, int p,int x)
+{
+	if( (n-1)==p)
+	{
+		v[p+1]=v[p];
+		v[p]=x;
+		n=n+1;
+
+		
+	}
+	else
+	{	
+		
+		insertarPos(v,n,p+1,x);
+		v[p+1]=v[p];
+		v[p]=x;
+	}
+	
+}
+
+void main()
+{
+	int v[50],n,p,x;
+	cout<<"INGRSE EL TAMANO: ";
+	cin>>n;
+	cargarvec(v,n);
+	mostrarvec(v,n);
+	cout<<"INGRESE LA POSICION QUE DESEA ELIMINAR: ";
+	cin>>p;
+	cout<<"INGRESE EL VALOR QUE DESEA AGREGAR";
+	cin>>x;
+	insertarPos(v,n,p,x);
+	mostrarvec(v,n);
+	getch();
+}
