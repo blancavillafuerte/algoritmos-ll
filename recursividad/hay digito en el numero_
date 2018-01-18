@@ -1,0 +1,95 @@
+// tarea.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include "conio.h"
+#include "stdlib.h"
+#include "stdio.h"
+#include <iostream>
+
+using namespace std;
+
+void cargarvec(int v[50], int n)
+{
+	int i=0;
+	while(i<n)
+	{
+		cout<<"INGRESE VALOR: ";
+		cin>>v[i];
+		i++;
+	}
+}
+void mostrarvec(int v[50], int n)
+{
+	int i=0;
+	while(i<n)
+	{
+		cout<<v[i]<<"   ";
+		i++;
+	}
+}
+int menorCercano(int v[], int n, int p)
+{
+	if(n==1)
+	{
+		if(v[n-1]<p)
+			return v[n-1];
+		else
+			return -100;
+	}
+	else
+	{
+		int x=menorCercano(v,n-1,p);
+		if(v[n-1]<p)
+		{
+			
+			if(v[n-1]>x)
+				return v[n-1];
+			else
+				return x;
+		}
+		else
+			return x;
+	}
+}
+bool haydig(int n, int x)
+{
+	if(n<10)
+	{
+		if(n==x)
+			return true;
+		else
+			return false;
+	}
+	else
+	{
+		bool hay=haydig(n/10,x);
+		if(hay==false)
+		{
+			if(n%10 == x)
+			{
+				return true;
+			}
+			else 
+				return false;
+		}
+		else
+			return true;
+	}
+
+}
+
+void main()
+{
+	int v[50],n,p,x;
+	cout<<"INGRSE EL NUMERO: ";
+	cin>>n;
+	cout<<"VERIFICAR SI HAY EL DIGITO: ";
+	cin>>x;
+	if(haydig(n,x))
+		cout<<"SI EXISITE EL DIGITO";
+	else
+		cout<<"NO EXISTE EL DIGITO";
+
+	getch();
+}
