@@ -71,11 +71,13 @@ void conjunto::Union(conjunto A, conjunto B)
 void conjunto::Diferencia(conjunto A, conjunto B)//conjunto A-B
 {
 	int i=0;
-	copiar(A);
 	while(i<A.getDim())
 	{
 		if(B.pertenece(A.getElem(i)))
-			eliminar(i);
+		{
+		}
+		else
+			insertarUltimo(A.getElem(i));
 		i++;
 	}
 }
