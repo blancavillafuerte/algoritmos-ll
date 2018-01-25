@@ -95,19 +95,18 @@ void conjunto::DiferenciaSim(conjunto A, conjunto B)
 bool conjunto::subConjunto(conjunto A)
 {
 	int i=0;
-	bool k=true;
 	while (i<getDim())
 	{
 		if(A.pertenece(getElem(i)))
 		{
+			i++;
 		}
 		else
 		{
-			k=false;
-			return k;
+			return false;
 		}
-		i++;
 	}
+	return true;
 	
 }
 bool conjunto::iguales(conjunto &A)
