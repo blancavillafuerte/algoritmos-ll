@@ -22,6 +22,8 @@ public:
 	bool subConjunto(conjunto A);
 	bool pertenece(int x); //verifica si el elemento existe en el conjunto 
 	bool iguales(conjunto &A);
+	void intercalar(conjunto A, conjunto B);
+	void ordenar();
 };
 
 bool conjunto::pertenece(int x)
@@ -112,6 +114,47 @@ bool conjunto::iguales(conjunto &A)
 {
 	return (A.subConjunto(*this) && subConjunto(A));
 
+}
+void conjunto::intercalar(conjunto A, conjunto B)
+{
+	int i=0;
+	while( i<A.getDim() && i<B.getDim() )
+	{
+		insertarUltimo(A.getElem(i));
+		insertarUltimo(B.getElem(i));
+		i++;
+	}
+	while(i<A.getDim())
+	{
+		insertarUltimo(A.getElem(i));
+		i++;
+	}
+	while (i<B.getDim())
+	{
+		insertarUltimo(B.getElem(i));
+		i++;
+	}
+	
+}
+void conjunto::ordenar()
+{
+	int i=0,j=0;
+	tipoElem aux;
+	while(i<getDim())
+	{
+		j=i+1;
+		while(j<getDim())
+		{
+			if(v[j]<v[i])
+			{
+				aux=v[i];
+				v[i]=v[j];
+				v[j]=aux;
+			}
+			j++;
+		}
+		i++;
+	}
 }
 void main()
 {
