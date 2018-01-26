@@ -1,0 +1,185 @@
+/////////////////////////////TRIANGULO EXAMEN.CPP/////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// TRIANGULO-EXAMEN.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include "punto.h"
+#include <iostream>
+#include "conio.h"
+#include "FIGURA.h"
+
+using namespace std;
+
+class triangulo:public figura
+{
+private:
+	punto p1;
+	punto p2;
+	punto p3;
+public:
+	void leertriangulo()
+	{
+		leerfigura();
+		cout<<"INGRESE COORDENADAS DEL P1";
+		p1.leer();
+		cout<<"INGRESE COORDENADAS DEL P2";
+		p2.leer();
+		cout<<"INGRESE COORDENADAS DEL P3";
+		p3.leer();
+	}
+	void mostrartriangulo()
+	{
+		mostrarfigura();
+		cout<<endl<<"COORDENADAS DEL P1";
+		p1.mostrar();
+		cout<<endl<<"COORDENADAS DEL P2";
+		p2.mostrar();
+		cout<<endl<<"COORDENADAS DEL P3";
+		p3.mostrar();
+	}
+	void verificarTriangulo();
+};
+
+void triangulo::verificarTriangulo()
+{
+	if(getlado()==3)
+	{
+		if(p1.getx()==p2.getx() && p2.getx()==p3.getx() && p3.getx()==p1.getx() && p1.gety()==p2.gety() && p2.gety()==p3.gety() && p3.gety()==p1.gety())
+		cout<<"SON EL MISMO PUNTO LOS TRES";
+		else
+		{
+		if(p1.getx()==p2.getx() && p2.getx()==p3.getx() && p3.getx()==p1.getx())
+			cout<<"SE FORMA UNA LINEA, NO ES UN TRIANGULO";
+		else
+		{
+			if(p1.gety()==p2.gety() && p2.gety()==p3.gety() && p3.gety()==p1.gety())
+				cout<<"SE FORMA UNA LINEA, NO ES UN TRIANGULO";
+			else
+			{
+				if(p1.distancia(p2) == 0 || p2.distancia(p3) == 0|| p3.distancia(p1)==0)
+					cout<<"SE FORMA UNA LINEA, NO ES UN TRIANGULO";
+				else
+				{
+					if(p1.distancia(p2) == p2.distancia(p3) && p2.distancia(p3) == p3.distancia(p1) && p1.distancia(p2)==p3.distancia(p1))
+						cout<<"ES UN TRIANGULO EQUILATERO";
+					else
+					{
+						if(p1.distancia(p2)==p2.distancia(p3) || p2.distancia(p3)==p3.distancia(p1) || p3.distancia(p1)==p1.distancia(p2))
+						{
+							cout<<"ES UN TRIANGULO ISOSCELES";
+						}
+						else
+							cout<<"TIRANGULO ESCALENO";
+					}
+				}
+			}
+		}
+		}
+	}
+	else
+		cout<<"NO ES UN TRIANGULO";
+}
+void main()
+{
+	triangulo t1;
+	t1.leertriangulo();
+	t1.mostrartriangulo();
+	cout<<endl;
+	t1.verificarTriangulo();
+
+	getch();
+	
+}
+////////////////////////////////////////////////FIGURA.H///////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#include "iostream"
+
+using namespace std;
+
+class figura
+{
+private:
+	int codigo;
+	int cantidadLados;
+public:
+	void setcantlados(int a)
+	{ 
+		cantidadLados=a;
+	}
+	int getlado()
+	{
+		return cantidadLados;
+	}
+	void leerfigura()
+	{
+		cout<<endl<<"INGRESE CODIGO DE LA FIGURA";
+		cin>>codigo;
+		cout<<endl<<"INGRESE LA CANTIDAD DE LADOS:";
+		cin>>cantidadLados;
+	}
+	void mostrarfigura()
+	{
+		cout<<endl;
+		cout<<"CODIGO DE LA FIGURA: "<<codigo;
+		cout<<"CANTIDAD DE LADOS: "<<cantidadLados;
+		cout<<endl;
+	}
+};
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////PUNTO.H//////////////////////////////////////////////////////////////////
+#include "iostream"
+
+using namespace std;
+
+class punto
+{
+private:
+	int x,y;
+public:
+	punto()
+	{
+		x=0;
+		y=0;
+	}
+	void setx(int a)
+	{
+		x=a;
+	}
+	void sety(int b)
+	{
+		y=b;
+	}
+	int getx()
+	{
+		return x;
+	}
+	int gety()
+	{
+		return y;
+	}
+	void leer()
+	{
+		int x,y;
+		cout<<"x="; cin>>x;
+		setx(x);
+		cout<<"y="; cin>>y;
+		sety(y); cout<<endl;
+	}
+	void mostrar()
+	{
+		cout<<"X="<<x;
+		cout<<"Y="<<y;
+
+	}
+	double distancia(punto p1);
+};
+
+double punto::distancia(punto p1)
+{
+	double a,b,c;
+	a=powf( (p1.getx() - getx() ),2);
+	b=powf((p1.gety() - gety() ),2 );
+	c=sqrt(a+b);
+	return c;
+}
