@@ -1,0 +1,142 @@
+// ljlj.cpp : Defines the entry point for the console application.
+////////////////////////////////////cpp////////////////////////////////////////////
+
+#include "stdafx.h"
+#include "figura.h"
+#include "conio.h"
+
+using namespace std;
+
+class triangulo:public figura
+{
+private:
+	float base;
+	float altura;
+public:
+	void setbase(float a)
+	{
+		base=a;
+	}
+
+	float getbase()
+	{
+		return base;
+	}
+	void setaltura( float a)
+	{
+		altura=a;
+	}
+	float getaltura()
+	{
+		return altura;
+	}
+	void leer()
+	{
+		figura::leer();
+		cout<<"INGRESE DATO DE ALUTRA: ";
+		cin>>altura;
+		cout<<"INGRES LA BASE: ";
+		cin>>base;
+	}
+	void mostrar()
+	{
+		figura::mostrar();
+		cout<<"ALUTRA: "<<altura;
+		cout<<"BASE: "<<base;
+	}
+	
+};
+
+
+class cuadrado:public figura
+{
+private:
+	float lado;
+public:
+	void setlado(float a)
+	{
+		lado=a;
+	}
+
+	float getlado()
+	{
+		return lado;
+	}
+	
+	void leer()
+	{
+		figura::leer();
+		cout<<"INGRESE EL LADO DEL CUADRADO: ";
+		cin>>lado;
+	}
+	void mostrar()
+	{
+		figura::mostrar();
+		cout<<"LADO: "<<lado;
+	}
+};
+
+void main()
+{
+	triangulo t1;
+	cuadrado c1;
+
+	cout<<"============INGRESE LOS DATOS DE LAS FIGURAS==============="<<endl;
+	t1.leer();
+	t1.mostrar();
+	cout<<"CUADRADOOO"<<endl;
+	c1.leer();
+	c1.mostrar();
+	getch();
+}
+
+//////////////////////////////////figura.h///////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+
+using namespace std;
+
+class figura
+{
+private:
+	int nro;
+	int cantidadLados;
+public:
+	figura()
+	{
+		nro=0;
+		cantidadLados=0;
+	}
+	void setnro(int a)
+	{
+		nro=a;
+	}
+	int getnro()
+	{
+		return nro;
+	}
+	void setcantidadLados(int a)
+	{
+		cantidadLados=a;
+	}
+	int getcantidadLados()
+	{
+		return cantidadLados;
+	}
+	void leer()
+	{
+		cout<<"INGRESE NRO DE LA FIGURA";
+		cin>>nro;
+		cout<<"INGRESE LA CANTIDAD DE LADOS DE LA FIGURA";
+		cin>>cantidadLados;
+	}
+
+	void mostrar()
+	{
+		cout<<"FIGURA NRO: "<<nro;
+		cout<<"CANTIDAD DE LADOS: "<<cantidadLados;
+	}
+
+};
