@@ -1,0 +1,145 @@
+// class matrices.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include "conio.h"
+#include <iostream>
+
+using namespace std;
+
+class matrices
+{
+private:
+	int fil;
+	int col;
+	int A[50][50];
+public:
+	matrices()
+	{
+		fil=0;
+		col=0;
+	}
+	void setfil(int a)
+	{
+		fil=a;
+	}
+	int getfil()
+	{
+		return fil;
+	}
+	void setcol(int a)
+	{
+		col=a;
+	}
+	int getcol()
+	{
+		return col;
+	}
+	void setelem(int a,int fil, int col)
+	{
+		A[fil][col]=a;
+	}
+	int getelem(int fil,int col)
+	{
+		return A[fil][col];
+	}
+	void cargarmatriz()
+	{
+		cout<<"INGRESE EL NUMERO DE FILAS: "<<endl;
+		cin>>fil;
+		cout<<"INGRESE EL NUMERO DE COLUMNAS: "<<endl;
+		cin>>col;
+		for(int i=0;i<fil;i++)
+		{
+			for(int j=0;j<col;j++)
+			{
+				cout<<endl<<"A["<<i<<"]["<<j<<"]=";
+				cin>>A[i][j];
+
+			}
+		}
+	}
+
+	void mostrarmatriz()
+	{
+		cout<<endl<<endl;
+		for(int i=0;i<fil;i++)
+		{
+			for(int j=0;j<col;j++)
+			{
+				cout<<"  "<<A[i][j];
+
+			}
+			cout<<endl;
+		}
+	}
+	void sumar(matrices A, matrices B)
+	{
+		if(A.getcol()==B.getcol() && A.getfil()==B.getfil())
+		{
+			setfil(A.getfil());
+			setcol(A.getcol());
+			for(int i=0;i<getfil();i++)
+			{
+				for(int j=0;j<getcol();j++)
+				{
+					setelem(A.getelem(i,j)+B.getelem(i,j),i,j);
+
+				}
+				cout<<endl;
+			}
+		}
+	}
+	void transpuesta(matrices A)
+	{
+		setfil(A.getcol());
+		setcol(A.getfil());
+		for(int i=0;i<getfil();i++)
+			{
+				for(int j=0;j<getcol();j++)
+				{
+					setelem(A.getelem(j,i),i,j);
+
+				}
+				cout<<endl;
+			}
+	}
+	//setelem(A.getelem(i,j)*B.getelem(j,i)+A.getelem(1,j)*B.getelem(1,i),i,j);
+	void mulitplicar(matrices A, matrices B)
+	{
+		int m=0;
+		if(A.getcol()==B.getfil())
+		{
+			setfil(A.getfil());
+			setcol(B.getcol());
+			for(int i=0;i<getfil();i++)
+			{
+				for(int j=0;j<getcol();j++)
+				{
+					m=0;
+					for(int k=0;k<B.getfil();k++)
+					{
+						m=m+ A.getelem(i,k)*B.getelem(k,j);
+					}
+					setelem(m,i,j);
+
+				}
+				cout<<endl;
+			}
+		}
+	}
+};
+
+void main()
+{
+	matrices A,B,C;
+	A.cargarmatriz();
+	A.mostrarmatriz();
+
+	B.cargarmatriz();
+	B.mostrarmatriz();
+	
+	C.mulitplicar(A,B);
+	C.mostrarmatriz();
+	getch();
+}
