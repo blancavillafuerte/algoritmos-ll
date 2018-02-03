@@ -1,0 +1,293 @@
+
+#include "stdafx.h"
+#include "conio.h"
+#include <iostream>
+
+using namespace std;
+
+class departamento
+{
+private:
+	int codigo;
+	char descripcion[1];
+	int precio;
+public:
+	departamento ()
+	{
+		codigo=0;
+		precio=0;
+	}
+	void setCodigo(int a)
+	{
+		codigo=a;
+	}
+	int getCodigo()
+	{
+		return codigo;
+	}
+	void setPrecio(int a)
+	{
+		precio=a;
+	}
+	int getPrecio()
+	{
+		return precio;
+	}
+	void setDescripcion(char d)
+	{
+		descripcion[1]=d;
+	}
+	char getDescripcion()
+	{
+		return descripcion[1];
+	}
+	
+
+	void guardar();
+	void mostrar();
+	
+};//end class
+
+
+void departamento::guardar()
+{
+	cout<<endl<<" INGRESE EL CODIGO DEL DEPARTAMENTO: ";
+	cin>>codigo;
+	cout<<endl<<" INGRESE LA DESCRIPCION DEL DEPARTAMENTO: ";
+	cin>>descripcion[1];
+	cout<<endl<<" INGRESE EL PRECIO POR DIA DEL DEPARTAMENTO: ";
+	cin>>precio;
+}
+
+void departamento::mostrar()
+{
+	cout<<"     "<<getCodigo()<<"           "<<getDescripcion()<<"          "<<getPrecio()<<endl;
+}
+///////////////////////////////////////
+
+#include "stdafx.h"
+#include "iostream"
+#include "conio.h"
+
+using namespace std;
+
+const int diaMes[13]={0,31,28,31,30,31,30,31,31,30,31,30,31};
+class fecha{
+private:
+ int dia;
+ int mes;
+ int anho;
+
+public:
+ fecha() {
+   dia=mes=anho=0;   
+ }
+
+ void setDia(int d)
+ { dia=d; }
+ 
+ int getDia()
+ { return dia; }
+
+ void setMes(int m)
+ { mes=m; }
+ 
+ int getMes()
+ { return mes; }
+
+ void setAnho(int a)
+ { anho=a; }
+ 
+ int getAnho()
+ { return anho; }
+
+ void leer();
+ void mostrar();
+ int diferencia(fecha f);
+
+}; //fin clase
+
+void fecha::leer()
+{
+	cout<<"ingrese mes: ";
+	cin>>mes;
+	do{
+		cout<<"ingrese dia: ";
+		cin>>dia;
+	}while(dia> diaMes[mes]);
+	cout<<"ingrese anho: ";
+	cin>>anho;
+}
+
+void fecha::mostrar()
+{
+	cout<<"  "<<dia<<"/"<<mes<<"/"<<anho;
+}
+int fecha::diferencia( fecha f)
+{
+	int i=0;
+	int d,m,a;
+	d=getDia();
+	m=getMes();
+	a=getAnho();
+	while(getDia()!=f.getDia() || getMes()!=f.getMes() || getAnho()!=f.getAnho())
+	{
+		d=d+1;
+		i++;
+		if(d>diaMes[mes])
+		{
+			d=1;
+			m=m+1;
+			if(m==13)
+			{
+				m=1;
+				a=a+1;
+			}
+		}
+		
+		setDia(d);
+		setMes(m);
+		setAnho(a);
+	}
+	return i;
+}
+/////////////////////////////////////////////////
+// Hospedaje.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include "fecha.h"
+#include "conio.h"
+#include <iostream>
+#include "departamento.h"
+
+using namespace std;
+
+class hospedaje
+{
+private:
+	int nro;
+	fecha fechaEntrada;
+	fecha fechaSalida;
+	int descuento;
+	int montoTotal;
+	int cedulaID;
+	int codigoDep;
+public:
+	hospedaje()
+	{
+		nro=0;
+		descuento=0;
+		montoTotal=0;
+		cedulaID=0;
+		codigoDep=0;
+	}
+	void setNro(int a)
+	{
+		nro=a;
+	}
+	int getNro()
+	{
+		return nro;
+	}
+	void setDescuento(int a)
+	{
+		descuento=a;
+	}
+	int getDescuento()
+	{
+		return descuento;
+	}
+	void setmontoTotal(int a) 
+	{
+		montoTotal=a;
+	}
+	int getMontoTotal()
+	{
+		return montoTotal;
+	}
+	void setCedulaID( int a)
+	{
+		cedulaID=a;
+	}
+	int getCedulaID()
+	{
+		return cedulaID;
+	}
+	void setCodigoDep(int a)
+	{
+		codigoDep=a;
+	}
+	int getCodigoDep()
+	{
+		return codigoDep;
+	}
+	void guardar();
+	void mostrar();
+};//endl class
+
+void hospedaje::guardar()
+{
+	char a='a';
+	char b= 'b';
+	departamento d1,d2,d3;
+	d1.setCodigo(100);
+	d1.setDescripcion(a);
+	d1.setPrecio(100);
+	d2.setCodigo(101);
+	d2.setDescripcion(b);
+	d2.setPrecio(200);
+	cout<<endl<<"===========DEPARTAMENTO==================="<<endl;
+	cout<<      "  codigo   |  Descripcion  |    Precio   |"<<endl;
+	d1.mostrar();
+	d2.mostrar();
+	
+	int dif;
+	cout<<endl<<" INGRESE NUMERO DE HOSPEDAJE: ";
+	cin>>nro;
+	cout<<endl<<" INGRESE LA FECHA DE ENTRADA: ";
+	fechaEntrada.leer();
+	cout<<endl<<" INGRESE LA FECHA DE SALIDA:  ";
+	fechaSalida.leer();
+	dif=fechaEntrada.diferencia(fechaSalida);
+	cout<<endl<<"****LOS DIAS DE ESTADIA SON: "<<dif<<"   ******"<<endl;
+	cout<<endl<<" INGRESE EL PORCENTAJE DE DESCUENTO: ";
+	cin>>descuento;
+	cout<<endl<<" INGRESE LA CEDULA DE ID:  ";
+	cin>>cedulaID;
+	
+	cout<<endl<<"INGRESE EL CODIGO DE DEPARTAMENTO QUE DESEA: ";
+	cin>>codigoDep;
+
+	if(d1.getCodigo()==codigoDep)
+	{
+		cout<<"entraa";
+		montoTotal = (d1.getPrecio()*dif)-((d1.getPrecio()*dif*descuento)/100);
+	}
+	if(d2.getCodigo()==codigoDep)
+	{
+		cout<<"entraa";
+		montoTotal = (d2.getPrecio()*dif)-((d2.getPrecio()*dif*descuento)/100);
+	}
+		//cout<<d1.getPrecio()<<endl;
+		//cout<<dif<<endl;
+		//cout<<descuento;
+
+
+}
+void hospedaje::mostrar()
+{
+	cout<<"==================HOSPEDAJE==================="<<endl;
+	cout<<endl<<"NRO  |  FECHA ENTRADA  | FECHA SALIDA  | DESCUENTO  | MONTO TOTAL | CODIGO DPTO | CEDULA ID  |"<<endl; 
+	cout<<"  "<<nro<<"      ";fechaEntrada.mostrar();cout<<"        ";fechaSalida.mostrar();cout<<"        "<<descuento<<"        "<<montoTotal<<"         "<<codigoDep<<"        "<<cedulaID<<endl;
+
+}
+void main()
+{
+	hospedaje h1;
+	h1.guardar();
+	h1.mostrar();
+	
+	getch();
+}
+/////////
